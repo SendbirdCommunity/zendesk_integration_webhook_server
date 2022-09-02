@@ -49,7 +49,65 @@ Don't forget to register a new ngrok url in the Zendesk webhook set up when the 
 
 Two triggers are required for this project. One trigger for when a new Zendesk ticket is created and one trigger for when a Zendesk assignee changes. 
 
-##### Trigger: Zendesk Ticket Assignee Changes
+
+##### Trigger 1: Zendesk Ticket Created
+
+
+##### Step 1
+
+Create the new trigger:
+
+```
+Zendesk Admin portal --> Objects and rules --> Business rules --> Triggers - click Add trigger
+```
+
+##### Step 2
+
+Add trigger details
+
+````
+Trigger name --> Ticket created
+Description --> ANY
+Category --> ANY
+````
+
+##### Step 3
+
+Set one condition
+
+
+Conditions 
+
+Meet ALL of the following conditions
+
+```Ticket``` ```Is``` ```Created```
+
+
+
+##### Step 4 
+
+
+Set the webhook body
+
+Actions
+
+Select ```Notify``` ```active``` ```webhook``` + Select the name of the webhook your saved from above. 
+
+JSON body  
+```
+{
+"action": "ticket_created",
+"ticket_title": "{{ticket.title}}",
+"ticket_id": "{{ticket.id}}",
+"requester_id": "{{ticket.requester.id}}",
+"requester_name": "{{ticket.requester}}"
+}
+```
+
+Please note that the ```action``` field is custom and is used by this server to recogonize the ticket was updated. 
+
+
+##### Trigger 2: Zendesk Ticket Assignee Changes
 
 ##### Step 1
 
@@ -105,3 +163,6 @@ JSON body
 ```
 
 Please note that the ```action``` field is custom and is used by this server to recogonize the ticket was updated. 
+
+
+
