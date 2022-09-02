@@ -5,6 +5,7 @@ const ZENDESK_WEBHOOK_AUTH_TOKEN = process.env.ZENDESK_WEBHOOK_AUTH_TOKEN
 
 import express from 'express'
 import {checkChannelMemberMovement, updateChannelMembership } from './utils.js'
+import { createChannel } from './api.js'
 
 const app = express()
 const port = 80
@@ -32,6 +33,14 @@ app.post('/', async(req, res) => {
       
       return res.sendStatus(200)
 
+    } else if (requestToken === authToken && req.body.action === 'ticket_created'){
+      console.log("created")
+
+      const channelMembers = [req.body.requester_id, req.body.assignee_id]
+      const createdChannel = await createChannel(req.body.ticket_id, channelMembers)
+      if(createdChannel.error) return res.sendStatus(400)
+      console.log(createdChannel)
+      return res.sendStatus(200)
     } else {
         res.sendStatus(403)
     }

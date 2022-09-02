@@ -44,4 +44,29 @@ export async function changeChannelMembers(channelUrl, userIds, movement, method
     }
   }
 
+  export async function createChannel(ticketId, user_ids){
+
+    var config = {
+      method: 'post',
+      url: `https://api-${SENDBIRD_APP_ID}.sendbird.com/v3/group_channels`,
+      headers: { 
+        'Api-Token': SENDBIRD_API_TOKEN, 
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(
+        {
+          user_ids: user_ids,
+          name: `zendesk-${ticketId}`,
+          channel_url: `zendesk-${ticketId}`
+        }
+        )
+    };
+    try {
+      const result = await axios(config)
+      if(result.data.members) return {error:false, members:result.data.members}    
+    } catch (e) {
+      return {error:true, message:e.message}
+    }
+  }
+
  

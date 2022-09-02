@@ -100,7 +100,9 @@ JSON body
 "ticket_title": "{{ticket.title}}",
 "ticket_id": "{{ticket.id}}",
 "requester_id": "{{ticket.requester.id}}",
-"requester_name": "{{ticket.requester}}"
+"requester_name": "{{ticket.requester}}",
+"assignee_name": "{{ticket.assignee}}",
+"assignee_id": "{{ticket.assignee.id}}"
 }
 ```
 
