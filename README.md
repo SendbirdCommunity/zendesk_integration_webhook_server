@@ -50,7 +50,7 @@ Don't forget to register a new ngrok url in the Zendesk webhook set up when the 
 Two triggers are required for this project. One trigger for when a new Zendesk ticket is created and one trigger for when a Zendesk assignee changes. 
 
 
-##### Trigger 1: Zendesk Ticket Created
+#### Trigger 1: Zendesk Ticket Created
 
 
 ##### Step 1
@@ -107,7 +107,7 @@ JSON body
 Please note that the ```action``` field is custom and is used by this server to recogonize the ticket was updated. 
 
 
-##### Trigger 2: Zendesk Ticket Assignee Changes
+#### Trigger 2: Zendesk Ticket Assignee Changes
 
 ##### Step 1
 
